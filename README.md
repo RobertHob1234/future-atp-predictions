@@ -1,2 +1,2 @@
 # future atp predictions
-neural network for tennis outcome prediction 
+feed forward neural network for tennis outcome prediction 
