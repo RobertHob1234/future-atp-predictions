@@ -8,17 +8,20 @@ if __name__ == "__main__":
         'player_1_rank', 'player_1_rank_points'
     ]
 
-    data = np.load("model_checkpoints/scaler_params.npz")
+    data = np.load(r"C:\Users\rober\Documents\NeuralNetwork1\model_checkpoints\scaler_params.npz")
     mean, scale = data["mean"], data["scale"]  # each shape (6,)
 
+    player_0 = "Fransisco Comesana"
+    player_1 = "Alexander Zverev"
+
     raw = {
-        "player_0_age": 69.1,
-        "player_1_age": 60.9,
-        "player_0_rank": 38.0,
-        "player_0_rank_points": 1130.0,
-        "player_1_rank": 42.0,
-        "player_1_rank_points": 1040.0,
-        "surface_code": 0,
+        "player_0_age": 25.11,
+        "player_1_age": 28.25,
+        "player_0_rank": 73.0,
+        "player_0_rank_points": 861.0,
+        "player_1_rank": 3.0,
+        "player_1_rank_points": 6310.0,
+        "surface_code": 1,
         "p0_hand_code": 0,
         "p1_hand_code": 0
     }
@@ -36,9 +39,11 @@ if __name__ == "__main__":
                   [raw["p1_hand_code"]]])  # (3,1)
     ])
 
-    A2, preds = predict_from_file(r"D:\Weights_Bias\final_lr0.5000.npz",x) # (9,)
+    A3, preds = predict_from_file(r"D:\Weights_Bias\final_lr0.5000.npz",x) # (9,)
 
     if preds == 1:
-        print("Based on your input the model predicted that player 0 would win")
+        print(f"Based on your input the model predicted that {player_0} would win")
+        print(f"Confidence = {A3 * 100}%")
     else:
-        print("Based on your input the model predicted that player 1 would win")
+        print(f"Based on your input the model predicted that {player_1} would win")
+        print(f"Confidence = {(1-A3) * 100}")
